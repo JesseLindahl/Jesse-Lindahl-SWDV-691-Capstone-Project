@@ -44,14 +44,14 @@
                 </div>
 
                 <hr>
-
                 <input id="form-button" class="btn btn-success" type="submit" value="Confirm">
             </form>
         </div>
 
         <br>
-        <div class="box-element" id="payment-info">
-            <h3>Payment Details: </h3>
+        <div class="box-element hidden" id="order-confirmation">
+            <h3>Confirm Order: </h3>
+            <button id="confirm-order">Confirm</button>
         </div>
 
     </div>
@@ -63,17 +63,71 @@
 
             <h3>Current Order: </h3>
 
+            {% for item in items %}
             <div class="cart-row">
-                <div style="flex:2"><img class="row-image" src="{% static 'images/mountain_bg.jpg' %}"></div>
-                <div style="flex:2"><p>Product 1</p></div>
-                <div style="flex:1"><p>$20.00</p></div>
-                <div style="flex:1"><p>x1</p></div>
+                <div style="flex:2"><img class="row-image" src="{{item.product.imageURL}}"></div>
+                <div style="flex:2"><p>{{item.product.name}}</p></div>
+                <div style="flex:1"><p>${{item.product.price}}</p></div>
+                <div style="flex:1"><p>x{{item.quantity}}</p></div>
             </div>
 
-            <h3>Items: 1</h3>
-            <h3>Total: $20</h3>
+            {% endfor %}
+            <h3>Items: {{order.cart_items}}</h3>
+            <h3>Total: ${{order.order_total | floatformat:2}}</h3>
         </div>
     </div>
 </div>
+
+<script type="text/javascript">
+    var shipping = '{{order.shipping}}'
+    var total = '{{order.order_total}}'
+
+    var form = document.getElementById('form')
+    form.addEventListener('submit', function(e){
+        e.preventDefault()
+        console.log('Info Submitted')
+        document.getElementById('form-button').classList.add('hidden');
+        document.getElementById('order-confirmation').classList.remove('hidden');
+    })
+
+    document.getElementById('confirm-order').addEventListener('click', function(e){
+        submitOrder()
+    })
+        
+    function submitOrder(){
+        console.log('Order Confirmed by User')
+
+        var userInfo = {
+            'name': null,
+            'email': null,
+            'total': total,
+        }
+
+        var addressInfo = {
+            'address': null,
+            'city': null,
+            'state': null,
+            'zipcode': null,
+            'country': null,
+        }
+
+        var url = '/process_order/'
+        fetch(url, {
+            method: 'POST',
+            headers: {
+                'Content-Type' : 'application/json',
+                'X-CSRFToken' : csrftoken
+            },
+            body: JSON.stringify({'form' : userInfo, 'shipping' : addressInfo})
+        })
+        .then((response) => response.json())
+        .then((data) => {
+            console.log('Confirmed:', data);
+            alert('Your order has been processed. Thank you for shopping!');
+            window.location.href = "{% url 'store' %}"
+        })
+    }
+
+</script>
 
 {% endblock content %}

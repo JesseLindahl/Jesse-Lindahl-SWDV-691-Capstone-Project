@@ -1,4 +1,8 @@
 from django.shortcuts import render
+from django.http import JsonResponse
+import json
+import datetime
+from .models import *
 
 # Create your views here.
 
@@ -20,7 +24,17 @@ def cancel(request):
     return render(request, 'app/cancel.html', context)
 
 def cart(request):
-    context = {}
+
+    #Needed to ensure the proper traits are being passed thourgh for order creation
+    if request.user.is_authenticated:
+        customer = request.user.customer
+        order, created = Order.objects.get_or_create(customer = customer, complete = False)
+        items = order.orderitems_set.all()
+    else: 
+        items = []
+        order = {'order_total':0, 'cart_items':0}
+
+    context = {'items':items, 'order':order}
     return render(request, 'app/cart.html', context)
 
 def contact(request):
@@ -32,7 +46,8 @@ def product(request):
     return render(request, 'app/product.html', context)
 
 def store(request):
-    context = {}
+    products = Products.objects.all()
+    context = {'products':products}
     return render(request, 'app/store.html', context)
 
 def success(request):
@@ -44,5 +59,65 @@ def workout(request):
     return render(request, 'app/workout.html', context)
 
 def checkout(request):
-    context = {}
+    if request.user.is_authenticated:
+        customer = request.user.customer
+        order, created = Order.objects.get_or_create(customer = customer, complete = False)
+        items = order.orderitems_set.all()
+    else: 
+        items = []
+        order = {'order_total':0, 'cart_items':0}
+
+    context = {'items' : items, 'order' : order}
     return render(request, 'app/checkout.html', context)
+    
+def updateItem(request):
+    data = json.loads(request.body)
+    productId = data['productId']
+    action = data['action']
+    print('productId:', productId)
+    print('action:', action)
+    customer = request.user.customer
+    product = Products.objects.get(id = productId)
+
+    #Logic for order creation 
+    order, created = Order.objects.get_or_create(customer = customer, complete = False)
+
+    #Updates order item quantity 
+    orderItem, created = OrderItems.objects.get_or_create(order = order, product = product)
+    if action == 'add': 
+        orderItem.quantity = (orderItem.quantity + 1)
+    elif action == 'remove':
+        orderItem.quantity = (orderItem.quantity - 1)
+
+    orderItem.save()
+
+    #Deletes an order
+    if orderItem.quantity <= 0:
+        orderItem.delete()
+
+    return JsonResponse('Item Updated', safe = False)
+
+def processOrder(request):
+    transaction_id = datetime.datetime.now().timestamp()
+    data = json.loads(request.body)
+    if request.user.is_authenticated:
+        customer = request.user.customer
+        order, created = Order.objects.get_or_create(customer=customer, complete=False)
+        total = float(data ['form'] ['total'])
+        order.transaction_id = transaction_id
+
+        if total == order.order_total:
+            order.complete = True
+        order.save()
+
+        if order.shipping == True:
+            ShippingAddress.objects.create(
+                customer=customer,
+                order=order,
+                address=data['shipping']['address'],
+                city=data['shipping']['city'],
+                state=data['shipping']['state'],
+                zipcode=data['shipping']['zipcode'],
+            )
+
+    return JsonResponse('Order Confirmed', safe = False)
