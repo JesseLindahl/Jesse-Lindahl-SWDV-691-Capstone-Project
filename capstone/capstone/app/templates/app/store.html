@@ -1,69 +1,31 @@
-{% load assets %}
-<link rel="stylesheet" type="text/css" href="{% assets 'css/Article-Clean.css' %}">
-<!DOCTYPE html>
-<html lang="en" style="background: url(&quot;assets/img/jelmer-assink-gzeTjGu3b_k-unsplash.jpg&quot;);">
+{% extends 'app/main.html' %}
+{% load static %}
+{% block content %}
 
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
-    <title>Fit Quick Website</title>
-    <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://cdn.reflowhq.com/v1/toolkit.min.css">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Bitter:400,700">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora">
-    <link rel="stylesheet" href="assets/fonts/ionicons.min.css">
-    <link rel="stylesheet" href="assets/css/Article-Clean.css">
-    <link rel="stylesheet" href="assets/css/Article-List.css">
-    <link rel="stylesheet" href="assets/css/Contact-Form-Clean.css">
-    <link rel="stylesheet" href="assets/css/Footer-Dark.css">
-    <link rel="stylesheet" href="assets/css/Header-Dark.css">
-    <link rel="stylesheet" href="assets/css/Projects-Clean.css">
-    <link rel="stylesheet" href="assets/css/styles.css">
-</head>
-
-<body style="background: url(&quot;assets/img/jelmer-assink-gzeTjGu3b_k-unsplash.jpg&quot;);">
-    <header class="header-dark" style="transform: perspective(0px);background: url(&quot;assets/img/jelmer-assink-gzeTjGu3b_k-unsplash.jpg&quot;);background-size: auto;">
-        <nav class="navbar navbar-dark navbar-expand-lg navigation-clean-search">
-            <div class="container"><a class="navbar-brand" href="index.html">Fit Quick</a><button data-bs-toggle="collapse" class="navbar-toggler" data-bs-target="#navcol-1"><span class="visually-hidden">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
-                <div class="collapse navbar-collapse" id="navcol-1">
-                    <ul class="navbar-nav ms-auto">
-                        <li class="nav-item"></li>
-                        <li class="nav-item"><a class="nav-link" href="index.html" data-bs-target="index.html"><strong>Home</strong></a></li>
-                        <li class="nav-item"><a class="nav-link" href="workout.html" data-bs-target="workout.html"><strong>Workout Plans</strong></a></li>
-                        <li class="nav-item"><a class="nav-link" href="store.html"><strong>Store</strong></a></li>
-                        <li class="nav-item"><a class="nav-link" href="contact.html"><strong>Contact</strong></a></li>
-                        <li class="nav-item"><a class="nav-link" href="account.html"><strong>Account</strong></a></li>
-                    </ul><a class="btn btn-primary" role="button" href="/cart.html"><strong>View Cart</strong></a>
-                </div>
-            </div>
-        </nav>
-        <div class="container hero">
-            <div class="row">
-                <div class="col-md-8 offset-md-2">
-                    <h1 class="text-center"><strong>Your Fitness Journey Starts Here</strong></h1>
-                </div>
-            </div>
+    <div class="row">
+        <div class="col-md-8 offset-md-2">
+            <h1 class="text-center">Your Fitness Journey Starts Here</h1>
+            <br>
+            <h2 class="text-center">Fit Quick Store</h2>
+            <br>
         </div>
-        <section class="article-list" style="background: #282d32;">
-            <div class="container">
-                <div class="intro">
-                    <h2 class="text-center" style="color: rgb(255,255,255);padding: 47px 40px 40px;">Fitness Products</h2>
-                </div>
-            </div>
-        </section>
-        <div data-reflow-type="product-list" data-reflow-layout="cards" data-reflow-order="date_desc" data-reflow-product-link="/product.html?product={id}" style="background: #ffffff;color: #ffffff;--bs-body-color: #ffffff;padding: 48px;"></div>
-    </header>
-    <footer class="footer-dark" style="background: rgb(40, 45, 50);">
-        <div class="container">
-            <div class="row">
-                <div class="col item social"><a href="https://www.facebook.com/"><i class="icon ion-social-facebook"></i></a><a href="https://twitter.com/?lang=en"><i class="icon ion-social-twitter"></i></a><a href="https://www.snapchat.com/"><i class="icon ion-social-snapchat"></i></a><a href="https://www.instagram.com/?hl=en"><i class="icon ion-social-instagram"></i></a></div>
-            </div>
-            <p class="copyright">Company Name © 2021</p>
-        </div>
-    </footer>
-    <script src="assets/bootstrap/js/bootstrap.min.js"></script>
-    <script src="https://cdn.reflowhq.com/v1/toolkit.min.js" data-reflow-store="1576904274"></script>
-    <script src="assets/js/bs-init.js"></script>
-</body>
+    </div>
 
-</html>
+    <div class="row">
+        <!-- for loop that generates product columns -->
+        {% for product in products %}
+        <div class="col-lg-4">
+            <img class="thumbnail" src="{{ product.image.url }}">
+                <div class="box-element product">
+                    <h6><strong>{{product.name}}</strong></h6>
+                    <hr>
+                    <!-- Bootstrap code -->
+                    <button data-product={{product.id}} data-action="add" class="btn btn-outline-secondary add-btn update-cart">Add to Cart</button>
+                    <a class="btn btn-outline-success" href="#">View</a>
+                    <!-- Lines up the buttons and pricing for the product tabs -->
+                    <h4 style="float: right;">${{product.price|floatformat:2}}</h4>
+                </div>
+        </div>
+        {% endfor %}
+    </div>
+{% endblock content %}
