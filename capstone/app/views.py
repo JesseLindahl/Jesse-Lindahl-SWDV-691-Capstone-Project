@@ -12,8 +12,15 @@ def main(request):
     return render(request, 'app/main.html', context)
 
 def index(request):
-    context = {}
+    # Populates all the blog posts currently stored in the database
+    posts = Post.objects.all()
+    context = {'posts':posts}
     return render(request, 'app/index.html', context)
+
+def postDetails(request, slug):
+    post = Post.objects.get(slug = slug)
+    context = {'post':post}
+    return render(request, 'app/post_detail.html', context)
 
 def account(request):
     context = {}
@@ -38,6 +45,16 @@ def cart(request):
     return render(request, 'app/cart.html', context)
 
 def contact(request):
+    if request.method == "POST":
+        contact = ContactForm()
+        name = request.POST.get('name')
+        email = request.POST.get('email')
+        message = request.POST.get('message')
+        contact.name = name
+        contact.email = email
+        contact.message = message
+        contact.save()
+        
     context = {}
     return render(request, 'app/contact.html', context)
 

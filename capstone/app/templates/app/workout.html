@@ -1,100 +1,62 @@
+{% extends 'app/main.html' %}
+{% load static %}
+{% block content %}
+
 <!DOCTYPE html>
 <html lang="en" style="background: url(&quot;assets/img/jelmer-assink-gzeTjGu3b_k-unsplash.jpg&quot;);">
 
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
-    <title>Fit Quick Website</title>
-    <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Bitter:400,700">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora">
-    <link rel="stylesheet" href="assets/fonts/ionicons.min.css">
-    <link rel="stylesheet" href="assets/css/Article-Clean.css">
-    <link rel="stylesheet" href="assets/css/Article-List.css">
-    <link rel="stylesheet" href="assets/css/Contact-Form-Clean.css">
-    <link rel="stylesheet" href="assets/css/Footer-Dark.css">
-    <link rel="stylesheet" href="assets/css/Header-Dark.css">
-    <link rel="stylesheet" href="assets/css/Projects-Clean.css">
-    <link rel="stylesheet" href="assets/css/styles.css">
-</head>
+
 
 <body style="background: url(&quot;assets/img/jelmer-assink-gzeTjGu3b_k-unsplash.jpg&quot;);">
     <header class="header-dark" style="background: url(&quot;assets/img/jelmer-assink-gzeTjGu3b_k-unsplash.jpg&quot;);transform: perspective(0px);background-size: auto;">
-        <nav class="navbar navbar-dark navbar-expand-lg navigation-clean-search">
-            <div class="container"><a class="navbar-brand" href="index.html">Fit Quick</a><button data-bs-toggle="collapse" data-bs-target="#navcol-1" class="navbar-toggler"><span class="visually-hidden">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
-                <div class="collapse navbar-collapse" id="navcol-1">
-                    <ul class="navbar-nav ms-auto">
-                        <li class="nav-item"></li>
-                        <li class="nav-item"></li>
-                        <li class="nav-item"></li>
-                        <li class="nav-item"></li>
-                        <li class="nav-item"></li>
-                    </ul>
-                    <div class="collapse navbar-collapse" id="navcol-2">
-                        <ul class="navbar-nav ms-auto">
-                            <li class="nav-item"></li>
-                            <li class="nav-item"><a class="nav-link" href="index.html" data-bs-target="index.html"><strong>Home</strong></a></li>
-                            <li class="nav-item"><a class="nav-link" href="workout.html" data-bs-target="workout.html"><strong>Workout Plans</strong></a></li>
-                            <li class="nav-item"><a class="nav-link" href="store.html"><strong>Store</strong></a></li>
-                            <li class="nav-item"><a class="nav-link" href="contact.html"><strong>Contact</strong></a></li>
-                            <li class="nav-item"><a class="nav-link" href="account.html"><strong>Account</strong></a></li>
-                        </ul><a class="btn btn-primary" role="button" href="/cart.html"><strong>View Cart</strong></a>
-                    </div>
-                </div>
-            </div>
-        </nav>
+        
         <div class="container hero">
             <div class="row">
                 <div class="col-md-8 offset-md-2">
                     <h1 class="text-center">Your Fitness Journey Starts Here</h1>
+                    <br>
+                    <h2 class="text-center">Fit Quick Workout Plans</h2>
+                    <br>
                 </div>
             </div>
             <section class="projects-clean">
-                <div class="container" style="background: #282d32;">
-                    <div class="intro">
-                        <h2 class="text-center" style="background: #282d32;color: rgb(255,255,255);">Popular Workout Plans</h2>
-                        <p class="text-center" style="color: rgb(255,255,255);width: 500px;margin: 0px;padding: 0px;height: 47px;font-size: 21px;">Please see below and select some of the most popular workout plans available today!</p>
-                    </div>
-                    <div class="row projects" style="background: #282d32;">
+                <div class="container" >
+                    <br>
+                    <div class="row projects">
                         <div class="col-sm-6 col-lg-4 item"><img class="img-fluid" src="assets/img/scott-webb-U5kQvbQWoG0-unsplash.jpg" style="width: 375px;">
-                            <h3 class="name" style="color: rgb(255,255,255);">Cardio</h3>
-                            <p class="description" style="color: rgb(255,255,255);"><br>Still trying to get used to your new gym routine? We've got your back. If you’re looking to increase your endurance and cardiovascular health, you’ll want to save this 7-day cardio workout plan and bring it with you to the club! It's like having a trainer right in your pocket.<br><br></p><a href="https://www.inshape.com/member-buzz/7-day-cardio-workout-plan/">Click Here</a>
+                            <h3 class="name">Cardio</h3>
+                            <p class="description"><br>Still trying to get used to your new gym routine? We've got your back. If you’re looking to increase your endurance and cardiovascular health, you’ll want to save this 7-day cardio workout plan and bring it with you to the club! It's like having a trainer right in your pocket.<br><br></p><a href="https://www.inshape.com/member-buzz/7-day-cardio-workout-plan/">Click Here</a>
                         </div>
                         <div class="col-sm-6 col-lg-4 item"><img class="img-fluid" src="assets/img/lorenzo-hamers-jvIaut-V9a4-unsplash.jpg" style="width: 156px;">
-                            <h3 class="name" style="color: rgb(255,255,255);">Full Body</h3>
-                            <p class="description" style="color: rgb(255,255,255);"><br>A 3-day full body workout is the most effective way to target all muscle groups without spending all week at the gym.<br><br></p><a href="https://betterme.world/articles/3-day-full-body-workout/">Click Here</a>
+                            <h3 class="name">Full Body</h3>
+                            <p class="description"><br>A 3-day full body workout is the most effective way to target all muscle groups without spending all week at the gym.<br><br></p><a href="https://betterme.world/articles/3-day-full-body-workout/">Click Here</a>
                         </div>
                         <div class="col-sm-6 col-lg-4 item"><img class="img-fluid" src="assets/img/javier-santos-guzman-9MR78HGoflw-unsplash.jpg" style="width: 164px;">
-                            <h3 class="name" style="color: rgb(255,255,255);">Home Workouts</h3>
-                            <p class="description" style="color: rgb(255,255,255);"><br><br>As the Lightning Seeds absolutely did not sing: It’s coming home, it’s coming home, it’s coming, exercise is coming home because of COVID-19.&nbsp;<br><br></p><a href="https://www.coachmag.co.uk/workouts/home-workouts">Click Here</a>
+                            <h3 class="name">Home Workouts</h3>
+                            <p class="description"><br><br>As the Lightning Seeds absolutely did not sing: It’s coming home, it’s coming home, it’s coming, exercise is coming home because of COVID-19.&nbsp;<br><br></p><a href="https://www.coachmag.co.uk/workouts/home-workouts">Click Here</a>
                         </div>
                         <div class="col-sm-6 col-lg-4 item"><img class="img-fluid" src="assets/img/cathy-pham-3jAN9InapQI-unsplash.jpg" style="width: 320px;">
-                            <h3 class="name" style="color: rgb(255,255,255);">Upper Body</h3>
-                            <p class="description" style="color: rgb(255,255,255);"><br>Grow your muscles by following this workout for 3 rounds. Choose weights that challenge you, but allow you to maintain form and complete the reps.<br><br></p><a href="https://www.fitnessfirst.com.au/get-there/hypertrophy-upper-body-workout/">Click Here</a>
+                            <h3 class="name">Upper Body</h3>
+                            <p class="description"><br>Grow your muscles by following this workout for 3 rounds. Choose weights that challenge you, but allow you to maintain form and complete the reps.<br><br></p><a href="https://www.fitnessfirst.com.au/get-there/hypertrophy-upper-body-workout/">Click Here</a>
                         </div>
                         <div class="col-sm-6 col-lg-4 item"><img class="img-fluid" src="assets/img/andrew-donovan-valdivia-ZW_TNzH1KiA-unsplash.jpg" style="width: 156px;">
-                            <h3 class="name" style="color: rgb(255,255,255);">Lower Body</h3>
-                            <p class="description" style="color: rgb(255,255,255);"><br>Leg day has a bad rep. Sure, after your first big leg workout you might worry that you’ll never walk again when you wake up with the very worst kind of DOMS, but once you’re over that hump you’ll start to look forward to leg day as a chance to test yourself and burn huge amounts of calories, thanks to the fact you’re using the biggest muscle groups in the body.<br><br></p><a href="https://www.coachmag.co.uk/leg-workouts/8412/leg-day-workout">Click Here</a>
+                            <h3 class="name">Lower Body</h3>
+                            <p class="description"><br>Leg day has a bad rep. Sure, after your first big leg workout you might worry that you’ll never walk again when you wake up with the very worst kind of DOMS, but once you’re over that hump you’ll start to look forward to leg day as a chance to test yourself and burn huge amounts of calories, thanks to the fact you’re using the biggest muscle groups in the body.<br><br></p><a href="https://www.coachmag.co.uk/leg-workouts/8412/leg-day-workout">Click Here</a>
                         </div>
                         <div class="col-sm-6 col-lg-4 item"><img class="img-fluid" src="assets/img/brett-jordan-U2q73PfHFpM-unsplash.jpg" style="width: 172px;">
-                            <h3 class="name" style="color: rgb(255,255,255);">Active Recovery</h3>
-                            <p class="description" style="color: rgb(255,255,255);"><br>An active recovery workout involves performing low-intensity exercise following a strenuous workout. Examples include walking, yoga, and swimming.&nbsp;<br><br></p><a href="https://www.healthline.com/health/active-recovery">Click Here</a>
+                            <h3 class="name">Active Recovery</h3>
+                            <p class="description"><br>An active recovery workout involves performing low-intensity exercise following a strenuous workout. Examples include walking, yoga, and swimming.&nbsp;<br><br></p><a href="https://www.healthline.com/health/active-recovery">Click Here</a>
                         </div>
                     </div>
                 </div>
             </section>
         </div>
     </header>
-    <footer class="footer-dark" style="background: rgb(40, 45, 50);">
-        <div class="container">
-            <div class="row">
-                <div class="col item social"><a href="https://www.facebook.com/"><i class="icon ion-social-facebook"></i></a><a href="https://twitter.com/?lang=en"><i class="icon ion-social-twitter"></i></a><a href="https://www.snapchat.com/"><i class="icon ion-social-snapchat"></i></a><a href="https://www.instagram.com/?hl=en"><i class="icon ion-social-instagram"></i></a></div>
-            </div>
-            <p class="copyright">Company Name © 2021</p>
-        </div>
-    </footer>
+
     <script src="assets/bootstrap/js/bootstrap.min.js"></script>
     <script src="assets/js/bs-init.js"></script>
 </body>
 
 </html>
+
+{% endblock content %}

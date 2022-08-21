@@ -1,0 +1,16 @@
+{% extends 'app/main.html' %}
+{% load static %}
+{% block content %}
+
+<div class="col-lg-4">
+    <h1 class="title">{{ post.subject }}</h1>
+    <br>
+    <h4>Created: {{ post.date_added }}</h4>
+    <br>
+    <h5>{{ post.intro }}</h5>
+    <br>
+    <p>{{ post.body }}</p>
+</div>
+
+
+{% endblock content %}

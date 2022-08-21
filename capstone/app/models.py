@@ -9,6 +9,7 @@ class Customer(models.Model):
     def __str__(self):
         return self.name
 
+# ERROR
 class Product(models.Model):
     name = models.CharField(max_length = 200, null = True)
     price = models.FloatField()
@@ -46,6 +47,7 @@ class Order(models.Model):
         total = sum([item.quantity for item in orderitems])
         return total  
 
+# ERROR
 class OrderItem(models.Model):
     product = models.ForeignKey(Product, on_delete = models.SET_NULL, null = True, blank = True)
     order = models.ForeignKey(Order, on_delete = models.SET_NULL, null = True, blank = True)
@@ -81,3 +83,42 @@ class OrderItems(models.Model):
     def get_total(self):
         total = self.product.price * self.quantity
         return total
+
+class ContactForm(models.Model):
+    name = models.CharField(max_length=100)
+    email = models.EmailField()
+    message = models.TextField()
+    def __str__(self):
+        return self.name
+
+# ERROR
+class Blog(models.Model):
+    subject = models.CharField(max_length = 200)
+    post = models.TextField()
+    date_added = models.DateTimeField(auto_now_add = True)
+
+    # subclass that sets the blog posts in chronological order
+    class PostOrder:
+        post_order = ['-date_added']
+
+# ERROR
+class Blogs(models.Model):
+    subject = models.CharField(max_length = 200)
+    slug = models.SlugField()
+    post = models.TextField()
+    date_added = models.DateTimeField(auto_now_add = True)
+
+    # subclass that sets the blog posts in chronological order
+    class PostOrder:
+        post_order = ['-date_added']
+
+class Post(models.Model):
+    subject = models.CharField(max_length = 200)
+    slug = models.SlugField()
+    intro = models.TextField()
+    body = models.TextField()
+    date_added = models.DateTimeField(auto_now_add = True)
+
+    # subclass that sets the blog posts in chronological order
+    class PostOrder:
+        post_order = ['-date_added']
