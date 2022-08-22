@@ -1,0 +1,45 @@
+{% extends 'app/main.html' %}
+{% load static %}
+{% block content %}
+
+    <div class="row">
+        <div class="col-md-8 offset-md-2">
+            <h1 class="text-center">Your Fitness Journey Starts Here</h1>
+            <br>
+            <h2 class="text-center">Fit Quick Store</h2>
+            <br>
+        </div>
+    </div>
+    <div class="box-element">
+        <table class="table">
+            <!-- Table rows and headings for the items in our shopping cart -->
+            <tr>
+                <th><h5>Fitness Products</h5></th>
+
+                <th>
+                    <a style="float: right; margin: 5px" class="btn btn-success" href="{% url 'checkout' %}">Checkout</a>
+                    <a style="float: right; margin: 5px" class="btn btn-outline-secondary add-btn" href="{% url 'cart' %}">View Cart</a>
+                </th>
+            </tr>
+        </table>
+    </div>
+    <br>
+
+    <div class="row">
+        <!-- for loop that generates product columns -->
+        {% for product in products %}
+        <div class="col-lg-4">
+            <img class="thumbnail" src="{{ product.image.url }}">
+                <div class="box-element product">
+                    <h6><strong>{{product.name}}</strong></h6>
+                    <hr>
+                    <!-- Bootstrap code -->
+                    <button data-product={{product.id}} data-action="add" class="btn btn-outline-secondary add-btn update-cart">Add to Cart</button>
+                    <!-- Lines up the buttons and pricing for the product tabs -->
+                    <h4 style="float: right;">${{product.price|floatformat:2}}</h4>
+                </div>
+                <br>
+        </div>
+        {% endfor %}
+    </div>
+{% endblock content %}
