@@ -1,0 +1,48 @@
+{% extends 'app/main.html' %}
+{% load static %}
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+
+<body>
+    <header class="header-dark">
+        <div class="container hero">
+            <div class="row">
+                <div class="col-md-8 offset-md-2">
+                    <h1 class="text-center">Your Fitness Journey Starts Here</h1>
+                    <br>
+                </div>
+            </div>
+        </div>
+        <section class="article-list">
+            <div class="container">
+                <div class="intro">
+                    <h2 class="text-center">Latest Articles</h2>
+                    <p class="text-center">Catch up on the latest trends happening in the world of fitness!</p>
+                    <br>
+                </div>
+                <div class="row articles">
+                    <div class="col-sm-6 col-md-4 item"><a href="https://www.nbcnews.com/news/us-news/army-replaces-decades-old-fitness-exam-more-rigorous-test-n1285329" target="_blank"><img class="img-fluid" src="static/images/211203-army-fitness-test-jm-0917.jpg" style="width: 390px;"></a>
+                        <h3 class="name"><br>Army replaces decades-old fitness exam with more rigorous test<br></h3>
+                        <p class="description"><br>The U.S. Army is planning to replace its antiquated fitness exam with a more rigorous model designed to better prepare soldiers for the demands of modern warfare.<br><br></p><a href="https://www.nbcnews.com/news/us-news/army-replaces-decades-old-fitness-exam-more-rigorous-test-n1285329" target="_blank">Click Here</a>
+                    </div>
+                    <div class="col-sm-6 col-md-4 item"><a href="https://time.com/6116651/gyms-peloton-planet-fitness/" target="_blank"><img class="img-fluid" src="static/images/GettyImages-1230930022.jpg" style="width: 342px;"></a>
+                        <h3 class="name"><br>America's Going to the Gym Again. That's Bad News for Peloton, But Great News for Mental Health<br></h3>
+                        <p class="description">Alison Phillips, an associate professor of psychology at Iowa State University, grew so, so tired of using the elliptical machine in her home, day after day, for over a year during the pandemic.<br><br></p><a href="https://time.com/6116651/gyms-peloton-planet-fitness/" target="_blank">Click Here</a>
+                    </div>
+                    <div class="col-sm-6 col-md-4 item"><a href="https://www.cincinnati.com/story/news/2021/12/03/lloyd-grad-charles-johnson-opening-fitness-facility-northern-kentucky/8824614002/" target="_blank"><img class="img-fluid" src="static/images/d71ab2fa-e626-4fa9-a8a5-07b898a2319a-AP16226027866702.jpg" style="width: 150px;"></a>
+                        <h3 class="name"><br>Former NFL player Charles Johnson opening fitness facility in Hebron – By the Way NKY<br></h3>
+                        <p class="description"><br>Charles Johnson, who retired from the NFL, is opening a D1 Training fitness facility in Hebron.<br></p><a href="https://www.cincinnati.com/story/news/2021/12/03/lloyd-grad-charles-johnson-opening-fitness-facility-northern-kentucky/8824614002/" target="_blank">Click Here</a>
+                    </div>
+
+
+                </div>
+            </div>
+        </section>
+    </header>
+
+</body>
+
+</html>
+
+{% endblock content %}
